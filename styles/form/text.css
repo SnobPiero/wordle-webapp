@@ -1,0 +1,26 @@
+.form-group {
+  .form-field {
+    .icon {
+      @apply relative;
+
+      svg {
+        @apply absolute top-2 left-2 w-5 h-5;
+      }
+
+      + .form-control {
+        @apply pl-8;
+      }
+    }
+  }
+
+  &.small {
+    .icon {
+      svg {
+        @apply top-1.5 left-1.5 w-4 h-4;
+      }
+      + .form-control {
+        @apply pl-6;
+      }
+    }
+  }
+}

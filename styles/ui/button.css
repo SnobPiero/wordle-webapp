@@ -1,0 +1,80 @@
+a.button,
+.button {
+  @apply bg-button-bg border-button-bg relative inline-flex cursor-pointer items-center justify-center rounded-lg border px-4 py-2 text-center text-base font-medium text-white no-underline lg:px-12 lg:py-1.5;
+
+  svg {
+    @apply shrink-0;
+  }
+
+  span + svg {
+    @apply ml-2;
+  }
+  svg + span {
+    @apply ml-2;
+  }
+
+  &.outline {
+    @apply text-body-text bg-transparent outline-none;
+  }
+  &.block {
+    @apply w-full;
+  }
+  &.xsmall {
+    @apply px-1.5 py-1.5 text-xs md:px-2 md:py-0.5;
+  }
+  &.small {
+    @apply px-2.5 py-1.5 text-xs md:px-3 md:py-1 md:text-sm;
+  }
+  &.large {
+    @apply px-4 py-1 text-base md:px-10 md:py-1.5 md:text-lg;
+  }
+
+  &.pillar {
+    @apply rounded-3xl;
+  }
+
+  &:not(:disabled) {
+    @apply hover:brightness-95;
+  }
+  &:disabled {
+    @apply cursor-auto opacity-60;
+  }
+
+  &.loading {
+    @apply opacity-100 brightness-95;
+
+    .pins {
+      @apply absolute bottom-1 left-auto right-auto flex;
+
+      .pin,
+      .pin-move {
+        @apply mx-0.5 h-1 w-1 rounded-full bg-white;
+      }
+      .pin-move {
+        @apply animate-loading-pin-move absolute bottom-0;
+      }
+    }
+
+    &.outline .pins {
+      .pin,
+      .pin-move {
+        @apply bg-body-bg;
+      }
+    }
+
+    &.xsmall,
+    &.small {
+      .pins {
+        @apply bottom-0.5;
+
+        .pin,
+        .pin-move {
+          @apply h-0.5 w-0.5;
+        }
+        .pin-move {
+          @apply animate-loading-pin-move-small;
+        }
+      }
+    }
+  }
+}

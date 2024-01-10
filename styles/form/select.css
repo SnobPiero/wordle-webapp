@@ -1,0 +1,203 @@
+.react-select-container {
+  @apply grow;
+
+  .react-select__control {
+    @apply border-form-border bg-form-bg min-h-0 rounded-lg border shadow-none;
+    &:hover {
+      @apply border-form-border;
+    }
+
+    .react-select__value-container {
+      @apply p-0;
+      div {
+        /* NOTA: utilizzato direttamente "div" perchè .react-select__single-value sparisce quando è searchable
+        e il primo figlio non ha una classe react-select-*
+        */
+        @apply text-form-text my-0 px-2.5 py-2.5;
+        /* leading-none */
+      }
+      .react-select__placeholder {
+        &:after {
+          @apply inline-block;
+          content: "";
+        }
+      }
+      > input {
+        @apply leading-none;
+      }
+
+      .react-select__multi-value {
+        @apply bg-form-active-bg my-2 ml-1 mr-1 py-0;
+
+        .react-select__multi-value__label,
+        .react-select__multi-value__remove {
+          @apply text-form-active-text px-0.5 py-0 text-sm;
+        }
+        .react-select__multi-value__remove:hover {
+          @apply bg-form-active-bg-dark;
+        }
+      }
+    }
+
+    .react-select__indicators {
+      .react-select__indicator-separator {
+        @apply bg-form-border my-2 w-0.5;
+      }
+
+      .react-select__indicator {
+        @apply px-0.5;
+        svg {
+          @apply text-form-border h-4 w-4 stroke-current;
+        }
+      }
+    }
+
+    /* .react-select__dropdown-indicator{
+      padding-top: 5.75px;
+      padding-bottom: 5.75px;
+    } */
+
+    &.react-select__control--is-focused {
+      @apply border-form-focus-border;
+
+      .react-select__indicators {
+        .react-select__indicator {
+          svg {
+            @apply text-form-focus-border stroke-current;
+          }
+        }
+      }
+    }
+
+    &.react-select__control--is-disabled {
+      @apply bg-form-disabled-bg;
+
+      .react-select__value-container {
+        div {
+          @apply text-form-disabled-text;
+        }
+        .react-select__multi-value {
+          @apply bg-form-active-disable-bg;
+
+          .react-select__multi-value__label,
+          .react-select__multi-value__remove {
+            @apply text-form-active-disable-text;
+          }
+        }
+      }
+    }
+  }
+
+  .react-select__menu {
+    @apply bg-form-bg border-form-focus-border z-10 mt-0.5 rounded-lg border-2 shadow-none;
+
+    .react-select__menu-list {
+      @apply p-0;
+
+      .react-select__option {
+        @apply text-form-text;
+
+        &:first-child {
+          @apply rounded-tl-md rounded-tr-md;
+        }
+        &:last-child {
+          @apply rounded-bl-md rounded-br-md;
+        }
+        &.react-select__option--is-focused {
+          @apply bg-form-active-bg text-form-active-text brightness-150;
+        }
+        &.react-select__option--is-selected {
+          @apply bg-form-active-bg text-form-active-text brightness-100;
+        }
+
+        .option-container {
+          @apply flex flex-row justify-between;
+
+          .highlight {
+            @apply font-medium;
+          }
+        }
+      }
+    }
+  }
+
+  &.small {
+    .react-select__control {
+      .react-select__value-container {
+        @apply px-2;
+
+        div {
+          @apply mt-0 text-sm leading-none;
+        }
+        > input {
+          @apply text-sm;
+        }
+
+        .react-select__multi-value .react-select__multi-value__label {
+          @apply py-[2px] pl-[6px] pr-[3px];
+        }
+      }
+
+      .react-select__indicators {
+        .react-select__indicator-separator {
+          @apply my-1;
+        }
+        .react-select__indicator {
+          @apply px-1 py-0.5;
+
+          svg {
+            @apply h-4 w-4;
+          }
+        }
+      }
+    }
+
+    .react-select__menu {
+      .react-select__menu-list {
+        .react-select__option {
+          @apply px-2 py-0.5 text-sm;
+        }
+      }
+    }
+  }
+}
+
+body.global-space-compact {
+  .react-select-container {
+    .react-select__control {
+      .react-select__value-container {
+        div {
+          @apply py-0;
+        }
+        .react-select__multi-value {
+          @apply my-0.5;
+        }
+      }
+      .react-select__indicators {
+        .react-select__indicator {
+          @apply px-2 py-0;
+        }
+      }
+    }
+  }
+}
+
+body.global-space-expand {
+  .react-select-container {
+    .react-select__control {
+      .react-select__value-container {
+        div {
+          @apply py-2;
+        }
+        .react-select__multi-value {
+          @apply py-0.5;
+        }
+      }
+      .react-select__indicators {
+        .react-select__indicator {
+          @apply px-2 py-2;
+        }
+      }
+    }
+  }
+}

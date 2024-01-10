@@ -1,0 +1,196 @@
+.form-group {
+  @apply py-1;
+
+  .form-field-up {
+    @apply flex items-center justify-between px-0;
+
+    .form-label {
+      @apply text-form-label-text flex items-start text-xs font-light leading-5;
+
+      svg {
+        @apply text-form-required-icon ml-1;
+      }
+    }
+
+    .form-tooltip {
+      svg {
+        @apply text-form-tooltip-icon;
+      }
+    }
+  }
+
+  .form-field {
+    @apply flex;
+
+    > input {
+      @apply text-center text-lg md:text-4xl max-w-[80px] cursor-pointer;
+    }
+
+    &.reverse {
+      @apply flex-row-reverse;
+    }
+
+    .form-control {
+      @apply border-form-border bg-form-bg text-form-text caret-transparent w-full grow rounded-lg border px-2.5 py-2.5;
+
+      &.not-included {
+        @apply bg-slate-600 border-black;
+      }
+
+      &.included-in-place {
+        @apply bg-green-400;
+      }
+
+      &.included-displaced {
+        @apply bg-yellow-400;
+      }
+
+      &:focus {
+        @apply border-form-focus-border;
+      }
+      &::placeholder {
+        @apply text-form-placeholder;
+      }
+    }
+
+    .form-value {
+      @apply w-full grow px-0 py-0 leading-none;
+
+      .form-selected {
+        @apply flex items-center;
+
+        svg {
+          @apply text-form-active-bg;
+        }
+        span {
+          @apply ml-0.5;
+        }
+      }
+
+      &.textarea {
+        @apply whitespace-pre-line;
+      }
+
+      .fix {
+      }
+    }
+
+    .form-prefix {
+      @apply border-form-border bg-form-prefix-bg text-form-prefix-text rounded-bl rounded-tl border-b border-l border-t px-2 py-1.5;
+    }
+    .form-suffix {
+      @apply border-form-border bg-form-prefix-bg text-form-prefix-text rounded-br rounded-tr border-b border-r border-t px-2 py-1.5;
+    }
+
+    .form-prefix + .form-control {
+      @apply rounded-bl-none rounded-tl-none;
+    }
+    .form-suffix + .form-control {
+      @apply rounded-br-none rounded-tr-none;
+    }
+  }
+
+  .form-field-down {
+    @apply px-1;
+
+    .form-error-message {
+      @apply text-form-error-text text-sm;
+    }
+
+    .form-help-text {
+      @apply text-form-help-text text-xs italic;
+    }
+  }
+
+  &.right {
+    .form-field-up {
+      @apply justify-end;
+    }
+    .form-field .form-value {
+      @apply text-right;
+    }
+  }
+
+  &.small {
+    .form-field-up {
+      .form-label {
+        @apply text-sm;
+      }
+    }
+    .form-field {
+      .form-control {
+        @apply py-0.5 text-sm;
+      }
+      .form-value {
+        @apply py-0 text-sm;
+      }
+      .form-prefix,
+      .form-suffix {
+        @apply py-0;
+      }
+    }
+    .form-field-down {
+      .form-error-message {
+        @apply text-xs;
+      }
+      .form-help-text {
+        @apply text-xs;
+      }
+    }
+  }
+  .react-select-container .react-select__control .react-select__indicators .react-select__indicator-separator {
+    @apply max-w-[1px];
+  }
+}
+
+body.global-space-compact {
+  .form-field {
+    @apply py-0;
+    .form-control,
+    .form-value,
+    .form-prefix,
+    .form-suffix {
+      @apply py-0;
+    }
+  }
+}
+
+body.global-space-expand {
+  .form-field {
+    @apply py-0;
+    .form-control,
+    .form-value,
+    .form-prefix,
+    .form-suffix {
+      @apply py-2;
+    }
+  }
+}
+
+/* Change the white to any color
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px rgb(30 41 59 / var(--tw-bg-opacity)) inset !important;
+}*/
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  /* border: 1px solid green; */
+  -webkit-text-fill-color: var(--form-text);
+  -webkit-box-shadow: 0 0 0px 1000px var(--form-bg) inset;
+  /* transition: background-color 5000s ease-in-out 0s; */
+  transition:
+    background-color 5000s ease-in-out 0s,
+    color 5000s 0s,
+    font-family 5000s 0s;
+}

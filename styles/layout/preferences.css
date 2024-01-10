@@ -1,0 +1,22 @@
+.user-space-selector {
+  @apply grid grid-cols-1 gap-5 md:mx-20 md:grid-cols-2 lg:grid-cols-3;
+  .space-selector-item {
+    @apply flex flex-col justify-center;
+    .skeleton-space-wrapper {
+      @apply bg-font-size-prference-bg mx-auto w-full max-w-sm rounded-md border-2;
+    }
+    .space-selector-footer {
+      @apply mt-2 flex items-center justify-center space-x-2 text-preference-footer-text;
+    }
+  }
+}
+
+.user-theme-list-wrapper {
+  @apply grid grid-cols-1 gap-5 md:mx-20 md:grid-cols-2 lg:grid-cols-3;
+  .skeleton-theme-wrapper {
+    @apply flex flex-col justify-center;
+    .skeleton-theme-footer {
+      @apply mt-2 flex items-center justify-center space-x-2 text-preference-footer-text;
+    }
+  }
+}

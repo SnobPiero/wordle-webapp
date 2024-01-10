@@ -1,0 +1,79 @@
+.modal-back {
+  @apply fixed bottom-0 left-0 right-0 top-0 z-10 backdrop-blur;
+}
+
+.modal-container {
+  @apply shadow-modal-shadow fixed left-1/2 top-1/2 z-30 max-h-[90vh] w-[95vw] max-w-2xl -translate-x-1/2 -translate-y-1/2 transform rounded-lg shadow-lg md:min-w-[400px];
+
+  &.large {
+    @apply max-w-6xl;
+  }
+
+  .data {
+    @apply bg-modal-data-bg flex items-center rounded-t-lg px-5 py-3 md:px-10 md:py-6;
+
+    .circle {
+      @apply mr-5 rounded-full p-2 md:mr-10 md:p-4;
+
+      .icon {
+        @apply h-4 w-4 md:h-8 md:w-8;
+      }
+    }
+
+    .message {
+      @apply text-modal-data-text flex min-h-[100px] flex-1 flex-col justify-center;
+
+      .title {
+        @apply font-medium md:text-lg;
+      }
+      .text {
+        @apply text-justify text-sm md:text-base;
+      }
+
+      .table-wrapper {
+        @apply max-h-[500px];
+      }
+    }
+  }
+
+  > .buttons {
+    @apply bg-modal-buttons-bg flex justify-end rounded-b-lg px-5 py-3;
+
+    > .button {
+      @apply mr-2 last:mr-0;
+    }
+  }
+
+  &.info {
+    .circle {
+      @apply bg-level-info-light;
+    }
+    .icon {
+      @apply text-level-info;
+    }
+  }
+  &.success {
+    .circle {
+      @apply bg-level-success-light;
+    }
+    .icon {
+      @apply text-level-success;
+    }
+  }
+  &.warn {
+    .circle {
+      @apply bg-level-warn-light;
+    }
+    .icon {
+      @apply text-level-warn;
+    }
+  }
+  &.danger {
+    .circle {
+      @apply bg-level-danger-light;
+    }
+    .icon {
+      @apply text-level-danger;
+    }
+  }
+}

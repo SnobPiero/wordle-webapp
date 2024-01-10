@@ -1,0 +1,40 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "react-toastify/dist/ReactToastify.min.css";
+
+/* form */
+@import "form/field.css";
+@import "form/text.css";
+@import "form/select.css";
+
+/* layout */
+@import "layout/layout.css";
+@import "layout/panel.css";
+@import "layout/preferences.css";
+
+/* typography */
+@import "typography/heading.css";
+@import "typography/paragraph.css";
+
+/* ui */
+@import "ui/button.css";
+@import "ui/modal.css";
+
+:root {
+  /* variabile per agganciare il font impostato in app.pages.js */
+  --font-base: "Inter";
+
+  /* colori */
+  /* --primary: #4866d6; */
+  /* --primary: #ffffff; */
+  --primary: #ff7c12;
+  --primary-dark: #ff7c12;
+
+  /* variabili per react-tostify */
+  --toastify-color-info: #0ea5e9; /* colors.sky[500] */
+  --toastify-color-success: #10b981; /* colors.emerald[500] */
+  --toastify-color-warning: #f59e0b; /* colors.amber[500] */
+  --toastify-color-error: #ef4444; /* colors.red[500] */
+  --toastify-font-family: "Inter", sans-serif;
+}
