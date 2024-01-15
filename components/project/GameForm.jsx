@@ -30,8 +30,13 @@ const GameForm = ({ mainWord, wordsList }) => {
   const [displacedLetter, setDisplacedLetters] = useState([]);
   const [inPlaceLetters, setInPlaceLetters] = useState([]);
   const [score, setScore] = useState({});
+  const [modalContent, setModalContent] = useState({
+    text: "Start playing. You will find your score here!",
+    triggerCallback: false,
+  });
 
-  // console.log("wordToFind", wordToFind);
+  // eslint-disable-next-line no-console
+  console.log("wordToFind", wordToFind);
 
   const tries = useMemo(() => [...Array(6).keys()], []);
   const tryRowIndex = useMemo(() => [...Array(5).keys()], []);
@@ -92,6 +97,10 @@ const GameForm = ({ mainWord, wordsList }) => {
       if (winningCase) {
         score[playedGames] = 6 - currentTry;
         setScore(score);
+        setModalContent({
+          text: "",
+          triggerCallback: true,
+        });
         scoreModalRef.current.open();
       }
       setCurrentTry(currentTry + 1);
@@ -130,6 +139,18 @@ const GameForm = ({ mainWord, wordsList }) => {
   useEffect(() => {
     setFocus("input_0_0");
   }, [setFocus]);
+
+  useEffect(() => {
+    if (currentTry === 6) {
+      score[playedGames] = 0;
+      setScore(score);
+      setModalContent({
+        text: "Unfortunately you lost this one but you can win the next one! Click on confirm to try again",
+        triggerCallback: true,
+      });
+      scoreModalRef.current.open();
+    }
+  }, [currentTry, playedGames, score, setFocus, startNewGame]);
 
   return (
     <>
@@ -182,7 +203,14 @@ const GameForm = ({ mainWord, wordsList }) => {
           currentValue={currentValue}
         />
       </form>
-      <Modal ref={scoreModalRef} callback={startNewGame}>
+      <Modal
+        ref={scoreModalRef}
+        type="confirm"
+        callback={startNewGame}
+        text={modalContent.text}
+        btnText="New game"
+        showButtons={modalContent.triggerCallback}
+      >
         <ScoreModalContent score={score} />
       </Modal>
     </>
