@@ -22,7 +22,7 @@ const GamePage = ({ mainWord, wordsList }) => {
 export const getServerSideProps = async () => {
   try {
     const [mainWord] = await fetcher({ url: "https://random-word-api.herokuapp.com/word?length=5&lang=en" });
-    const wordsList = await fetcher({ url: "https://random-word-api.herokuapp.com/all" });
+    const wordsList = await fetcher({ url: "https://random-word-api.herokuapp.com/all?lang=en" });
     return {
       props: {
         mainWord,
