@@ -5,7 +5,7 @@ import Button from "@/components/ui/Button";
 
 import { RiDeleteBack2Line } from "react-icons/ri";
 
-const VirtualKeyboard = ({ setValue, checkValidity, currentBox, setFocus, currentValue }) => {
+const VirtualKeyboard = ({ setValue, currentBox, setFocus, currentValue }) => {
   const letters_1 = useMemo(() => ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"], []);
   const letters_2 = useMemo(() => ["a", "s", "d", "f", "g", "h", "j", "k", "l"], []);
   const letters_3 = useMemo(() => ["z", "x", "c", "v", "b", "n", "m"], []);
@@ -41,7 +41,7 @@ const VirtualKeyboard = ({ setValue, checkValidity, currentBox, setFocus, curren
         ))}
       </div>
       <div className="flex gap-2">
-        <Button className="!p-1 md:!px-12 md:!py-4 uppercase" onClick={checkValidity}>
+        <Button className="!p-1 md:!px-12 md:!py-4 uppercase" type="confirm">
           Enter
         </Button>
         {letters_3.map((letter, i) => (
@@ -57,7 +57,6 @@ const VirtualKeyboard = ({ setValue, checkValidity, currentBox, setFocus, curren
 
 VirtualKeyboard.propTypes = {
   setValue: PropTypes.func,
-  checkValidity: PropTypes.func,
   currentBox: PropTypes.string,
   setFocus: PropTypes.func,
   currentValue: PropTypes.string,

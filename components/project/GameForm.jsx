@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 
 import VirtualKeyboard from "@/components/project/VirtualKeyboard";
-import Text from "@/components/form/Text";
+import MatrixCells from "@/components/project/MatrixCells";
 import ScoreModalContent from "@/components/project/ScoreModal";
 import Modal from "@/components/ui/Modal";
 import Button from "@/components/ui/Button";
@@ -19,7 +19,7 @@ const GameForm = ({ mainWord, wordsList }) => {
   //   "wordsLists",
   //   wordsList.filter((w) => w.length === 5),
   // );
-  const { control, setFocus, watch, setValue, reset } = useForm();
+  const { handleSubmit, control, setFocus, watch, setValue, reset } = useForm();
 
   const scoreModalRef = useRef();
 
@@ -35,8 +35,7 @@ const GameForm = ({ mainWord, wordsList }) => {
     triggerCallback: false,
   });
 
-  // eslint-disable-next-line no-console
-  console.log("wordToFind", wordToFind);
+  // console.log("wordToFind", wordToFind);
 
   const tries = useMemo(() => [...Array(6).keys()], []);
   const tryRowIndex = useMemo(() => [...Array(5).keys()], []);
@@ -159,49 +158,17 @@ const GameForm = ({ mainWord, wordsList }) => {
           Score
         </Button>
       </div>
-      <form onSubmit={checkValidity} autoComplete="off">
-        <div className="grid grid-cols-1 mt-6 mb-12 md:mx-20 space-y-1.5">
-          {tries.map((tryNumber, i) => (
-            <div className="flex gap-4 justify-center" key={i}>
-              {tryRowIndex.map((rowIndex) => (
-                <Text
-                  inputClass={`uppercase ${checkColors(`input_${tryNumber}_${rowIndex}`)}`}
-                  key={`input_${tryNumber}_${rowIndex}`}
-                  name={`input_${tryNumber}_${rowIndex}`}
-                  control={control}
-                  maxlength={1}
-                  keyDown={(e) => {
-                    const value = watch(`input_${tryNumber}_${rowIndex}`);
-                    if (!value && e.key === "Backspace") {
-                      e.preventDefault();
-                    }
-                  }}
-                  keyUp={(e) => {
-                    if (e.key === "Backspace") {
-                      setFocus(`input_${tryNumber}_${rowIndex - 1}`);
-                    }
-                  }}
-                  change={(e) => {
-                    if (e.length === 1) {
-                      setFocus(`input_${tryNumber}_${rowIndex + 1}`);
-                    }
-                  }}
-                  mouseDown={(e) => {
-                    setFocus(currentBox);
-                    e.preventDefault();
-                  }}
-                />
-              ))}
-            </div>
-          ))}
-        </div>
-        <VirtualKeyboard
-          setValue={setValue}
-          checkValidity={checkValidity}
+      <form onSubmit={handleSubmit(checkValidity)} autoComplete="off">
+        <MatrixCells
+          tries={tries}
+          tryRowIndex={tryRowIndex}
+          control={control}
           currentBox={currentBox}
+          checkColors={checkColors}
+          watch={watch}
           setFocus={setFocus}
-          currentValue={currentValue}
         />
+        <VirtualKeyboard setValue={setValue} currentBox={currentBox} setFocus={setFocus} currentValue={currentValue} />
       </form>
       <Modal
         ref={scoreModalRef}
